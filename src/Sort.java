@@ -5,7 +5,8 @@ public class Sort {
 
     private static boolean lessThan(int prev, int next) {
         incrementCounter(1);    // prev < next test
-        return prev < next; }
+        return prev < next;
+    }
 
     private static void setCounter(int c) {
         counter = c;
@@ -44,7 +45,7 @@ public class Sort {
         int n = arr.length;
         incrementCounter(2);    // int n, initialization for i
         for (int i = 1; i < n; i++, incrementCounter(3)) {  // i < n, i++ and j reinitialization
-            for (int j = i; j > 0 && lessThan(arr[j], arr[j-1]); j--, incrementCounter(1))  // j > 0 test
+            for (int j = i; j > 0 && lessThan(arr[j], arr[j-1]); j--, incrementCounter(2))  // j > 0 test
                 swap(arr, j, j - 1);
         }
     }
