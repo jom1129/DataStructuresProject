@@ -55,10 +55,9 @@ public class Sort {
         int n = arr.length;
         incrementCounter(2);    // int n, initialization for i
         for (int i = 0; i < n-1; i++, incrementCounter(4))  // i < n -1 test (2 op), j reinitialization, i++
-            for (int j = 0; j < n-i-1; j++, incrementCounter(4)) // j < n - i - 1 (3 op), j++
+            for (int j = 0; j < n-i-1; j++, incrementCounter(5)) // j < n - i - 1 (3 op), j++
                 if (lessThan(arr[j + 1], arr[j])) {
                     swap(arr, j, j + 1);
-                    incrementCounter(1);
                 }
     }
 }
