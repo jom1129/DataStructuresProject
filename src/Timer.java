@@ -21,7 +21,6 @@ public final class Timer {  // Do not extend the timer class
     public Timer() { startTime = System.currentTimeMillis(); }  // Assigns the current time
                                                                 // to startTime
                                                                 // upon instantiation
-
     /**
      * Subtracts the beginning time from the current system time
      * to compute for the elapsed time
