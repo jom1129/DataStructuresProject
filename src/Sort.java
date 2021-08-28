@@ -1,23 +1,52 @@
-// Code adapted From R. Sedgewick's Algorithms 4th ed.
-// Book homepage: https://algs4.cs.princeton.edu/home/
+/**
+ * Utility class that contains Sorting algorithms
+ * and helper methods.
+ * Code adapted From R. Sedgewick's Algorithms 4th ed.
+ * Book homepage: https://algs4.cs.princeton.edu/home/
+ */
 public class Sort {
 
-    private Sort() { }  // do not instantiate the sort Class
+    /**
+     * Prevent instantiation of this utility class.
+     */
+    private Sort() { }
 
-    protected static long counter = 0;
+    /**
+     * Records the number of instructions
+     * when executing sorting algorithms.
+     */
+    protected static double counter = 0;
 
+
+    /**
+     * @param prev previous value
+     * @param next subsequent value
+     * @return tests if previous is less than the following value.
+     */
     private static boolean lessThan(int prev, int next) {
         incrementCounter(1);    // prev < next test
         return prev < next;
     }
 
+    /** Sets the counter variable to the passed parameter.
+     * @param c set the counter variable to the value of this.
+     */
     private static void setCounter(int c) {
         counter = c;
     }
+
+    /**
+     * @param i add this value to the counter variable.
+     */
     private static void incrementCounter(int i) {
         counter += i;
     }
 
+    /** Swaps the values of an array, to be used with lessThan()
+     * @param arr the array to be sorted
+     * @param i base index
+     * @param j swap with i, j usually succeeds i
+     */
     private static void swap(int[] arr, int i, int j) {
         int temp = arr[i];
         arr[i] = arr[j];
@@ -25,7 +54,9 @@ public class Sort {
         incrementCounter(3);
     }
 
-    //
+    /** Implementation of the Selection Sort algorithm
+     * @param arr array to be sorted
+     */
     protected static void selection(int[] arr) {
         setCounter(0); // set counter to zero
         int n = arr.length;
@@ -43,6 +74,9 @@ public class Sort {
         }
     }
 
+    /** Implementation of the Insertion Sort Algorithm.
+     * @param arr array to be sorted.
+     */
     protected static void insertion(int[] arr) {
         setCounter(0); // set counter to 0
         int n = arr.length;
@@ -53,6 +87,9 @@ public class Sort {
         }
     }
 
+    /** Implementation of the Bubble Sort Algorithm.
+     * @param arr array to be sorted
+     */
     protected static void bubble(int[] arr) {
         setCounter(0);  // set counter to 0
         int n = arr.length;
