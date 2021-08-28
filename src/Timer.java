@@ -1,5 +1,6 @@
 // Code adapted From R. Sedgewick's Algorithms 4th ed.
 // Book homepage: https://algs4.cs.princeton.edu/home/
+
 public final class Timer {  // Do not extend the timer class
     /*
         Usage:

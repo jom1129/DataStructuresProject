@@ -1,7 +1,10 @@
 // Code adapted From R. Sedgewick's Algorithms 4th ed.
 // Book homepage: https://algs4.cs.princeton.edu/home/
 public class Sort {
-    protected static int counter = 0;
+
+    private Sort() { }  // do not instantiate the sort Class
+
+    protected static long counter = 0;
 
     private static boolean lessThan(int prev, int next) {
         incrementCounter(1);    // prev < next test
@@ -55,7 +58,7 @@ public class Sort {
         int n = arr.length;
         incrementCounter(2);    // int n, initialization for i
         for (int i = 0; i < n-1; i++, incrementCounter(4))  // i < n -1 test (2 op), j reinitialization, i++
-            for (int j = 0; j < n-i-1; j++, incrementCounter(5)) // j < n - i - 1 (3 op), j++
+            for (int j = 0; j < n- i - 1; j++, incrementCounter(5)) // j < n - i - 1 (3 op), j++ and arr[j+1]
                 if (lessThan(arr[j + 1], arr[j])) {
                     swap(arr, j, j + 1);
                 }
