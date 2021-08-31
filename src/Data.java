@@ -1,3 +1,6 @@
+import java.io.*;
+import java.util.*;
+import java.util.stream.Collectors;
 public class Data {
 
     /*
@@ -9,9 +12,44 @@ public class Data {
      */
 
     private static class CSVUtils {
-        // static checkCSV();
+        static String[] checkCSV(String filename){
+            File source = new File ("CSV");
+            String[] fList = source.list();
+            int f = 0;
+            if (fList == null){
+                System.out.println("No file found");
+            }
+            else {
+                for (int i = 0; i < fList.length; i++) {
+                    String n = fList[i];
+                    if (n.equalsIgnoreCase(filename)){
+                        System.out.println("File found");
+                        f = 1;
+                    }
+                }
+            }
+            if (f == 0 ){
+                System.out.println("File not Found");
+            }
+            return fList;
+        }
         // static parseCSV()
-        // static generateCSV()
+        static void generateCSV(int[] arr, String filename){
+            List<Integer> dataList = Arrays
+                    .stream(arr)
+                    .boxed()
+                    .collect(Collectors.toList());
+            try {
+                PrintWriter pW = new PrintWriter(new FileWriter(filename,true));
+                dataList.forEach(pW::println);
+                pW.println();
+                pW.close();
+            } catch (FileNotFoundException missingFileException) {
+                System.out.println("Missing File.");
+            } catch (IOException inputAndOutputException) {
+                System.out.println("Input and Output error: " + inputAndOutputException);
+            }
+        }
     }
 
     /*
