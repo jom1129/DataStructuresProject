@@ -1,4 +1,6 @@
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.*;
 import java.util.stream.Collectors;
 public class Data {
@@ -12,6 +14,7 @@ public class Data {
      */
 
     private static class CSVUtils {
+        /*
         static String[] checkCSV(String filename){
             File source = new File ("CSV");
             String[] fList = source.list();
@@ -33,7 +36,23 @@ public class Data {
             }
             return fList;
         }
+
+         */
+
+        static boolean checkCSV(String fileName) {
+            File file = new File(fileName);
+            return file.isFile();
+        }
+
         // static parseCSV()
+        static int[] parseCSV(String fileName) {
+            List<Integer> data = new ArrayList<>();
+            if (checkCSV(fileName)) {
+                System.out.println(fileName + " exists! Aborting.");
+                return null;
+            }
+
+        }
         static void generateCSV(int[] arr, String filename){
             List<Integer> dataList = Arrays
                     .stream(arr)
