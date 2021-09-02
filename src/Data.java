@@ -29,6 +29,7 @@ public class Data {
             try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
                 while (br.ready()) data.add(Integer.parseInt(br.readLine()));
             } catch (Exception ignored) {
+
             }
             return data;
         }

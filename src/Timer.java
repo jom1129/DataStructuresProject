@@ -25,7 +25,7 @@ public final class Timer {  // Do not extend the timer class
      * Subtracts the beginning time from the current system time
      * to compute for the elapsed time
      * division by 1000.00 is necessary because time is represented
-     * using the long data type
+     * using in milliseconds.
      * @return the elapsed time
      */
 
