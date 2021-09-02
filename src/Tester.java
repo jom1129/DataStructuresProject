@@ -1,31 +1,30 @@
-import java.util.Arrays;
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Tester {
+
+    static void generateDataSet() {
+        Data.generateBestCase(10000, "res/10KBestCase.csv");
+        // Data.generateWorstCase(10000, "res/10KBestCase");
+        // Data.generateAverageCase(10000, "res/10KAverageCase");
+        // Do the same for the 500K and 1M datasets
+    }
+
     public static void main(String[] args) {
-        /*
-        int[] arr = { 10, 8, 6, 5, 4, 3, 2, 0 };
-        int[] sorted = arr.clone();
+        // generateDataSet();
+        List<Integer> temp;
+        int[] bestCase10k;
 
-        Sort.bubble(sorted);
-        System.out.println(Arrays.toString(sorted));
-        System.out.println(Sort.counter);
+        temp = Data.parse("res/10KBestCase.csv");
+        bestCase10k = temp
+                .stream()
+                .mapToInt(Integer::intValue)
+                .toArray();
 
-        sorted = arr.clone();
-
-        Sort.insertion(sorted);
-        System.out.println(Arrays.toString(sorted));
-        System.out.println(Sort.counter);
-
-        sorted = arr.clone();
-
-        Sort.selection(sorted);
-        System.out.println(Arrays.toString(sorted));
-        System.out.println(Sort.counter);
-
-         */
-        // Data.generateBestCase(100, "res/100BestCase.txt");
-        List<Integer> data = Data.parse("res/100BestCase.txt");
-        System.out.print(data.get(data.size() - 1));
+        Timer timer = new Timer();
+        Sort.bubble(bestCase10k);
+        System.out.println(timer.timeElapsed());
+        System.out.println(new BigDecimal(Sort.counter).toPlainString());
     }
 }

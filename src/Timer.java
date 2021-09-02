@@ -32,5 +32,6 @@ public final class Timer {  // Do not extend the timer class
     public double timeElapsed() {
         long currentTime = System.currentTimeMillis(); // Re-invocation of the method
         return (currentTime - startTime) / 1000.0;     // returns the updated time
+                                                       // in seconds
     }
 }
