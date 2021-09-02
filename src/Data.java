@@ -54,8 +54,8 @@ public class Data {
                 System.out.println(fileName + " does not exist! Aborting.");
                 return null;
             }
-            try (Stream<String> stream = Files.lines(Paths.get(fileName))) {
-                data = stream
+            try (BufferedReader br = Files.newBufferedReader(Paths.get(fileName))) {
+                data = br.lines()
                         .map(Integer::valueOf)
                         .collect(Collectors.toList());
             } catch (Exception e) {
