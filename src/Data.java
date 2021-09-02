@@ -1,13 +1,9 @@
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.IntStream;
 
 public class Data {
-
     /*
         NOTICE: Do not generate a CSV if one already exists!
                 Generating a new CSV overwrites the old one.
@@ -17,30 +13,6 @@ public class Data {
      */
 
     private static class CSVUtils {
-        /*
-        static String[] checkCSV(String filename){
-            File source = new File ("CSV");
-            String[] fList = source.list();
-            int f = 0;
-            if (fList == null){
-                System.out.println("No file found");
-            }
-            else {
-                for (int i = 0; i < fList.length; i++) {
-                    String n = fList[i];
-                    if (n.equalsIgnoreCase(filename)){
-                        System.out.println("File found");
-                        f = 1;
-                    }
-                }
-            }
-            if (f == 0 ){
-                System.out.println("File not Found");
-            }
-            return fList;
-        }
-
-         */
 
         static boolean checkCSV(String fileName) {
             File file = new File(fileName);
@@ -54,27 +26,19 @@ public class Data {
                 System.out.println(fileName + " does not exist! Aborting.");
                 return null;
             }
-            try (BufferedReader br = Files.newBufferedReader(Paths.get(fileName))) {
-                data = br.lines()
-                        .map(Integer::valueOf)
-                        .collect(Collectors.toList());
-            } catch (Exception e) {
-                System.out.println("Error: " + e);
+            try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+                while (br.ready()) data.add(Integer.parseInt(br.readLine()));
+            } catch (Exception ignored) {
             }
             return data;
         }
 
-        static void generateCSV(int[] arr, String fileName){
-
+        static void generateCSV(List<Integer> dataList, String fileName){
             if(checkCSV(fileName)) {
                 System.out.println(fileName + " exists! Aborting.");
                 return;
             }
 
-            List<Integer> dataList = Arrays
-                    .stream(arr)
-                    .boxed()
-                    .collect(Collectors.toList());
             try {
                 PrintWriter pW = new PrintWriter(new FileWriter(fileName, true));
                 dataList.forEach(pW::println);
@@ -96,4 +60,15 @@ public class Data {
                 static generateAverageCase()
      */
 
+    static void generateBestCase(int n, String fileName) {
+        List<Integer> dataList = IntStream.iterate(0, i -> i + 1)
+                .limit(n)
+                .boxed()
+                .toList();
+        CSVUtils.generateCSV(dataList, fileName);
+    }
+
+    static List<Integer> parse(String fileName) {
+        return CSVUtils.parseCSV(fileName);
+    }
 }
