@@ -1,8 +1,11 @@
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 public class Data {
 
     /*
@@ -45,21 +48,35 @@ public class Data {
         }
 
         // static parseCSV()
-        static int[] parseCSV(String fileName) {
+        static List<Integer> parseCSV(String fileName) {
             List<Integer> data = new ArrayList<>();
-            if (checkCSV(fileName)) {
-                System.out.println(fileName + " exists! Aborting.");
+            if (!checkCSV(fileName)) {
+                System.out.println(fileName + " does not exist! Aborting.");
                 return null;
             }
-
+            try (Stream<String> stream = Files.lines(Paths.get(fileName))) {
+                data = stream
+                        .map(Integer::valueOf)
+                        .collect(Collectors.toList());
+            } catch (Exception e) {
+                System.out.println("Error: " + e);
+            }
+            return data;
         }
-        static void generateCSV(int[] arr, String filename){
+
+        static void generateCSV(int[] arr, String fileName){
+
+            if(checkCSV(fileName)) {
+                System.out.println(fileName + " exists! Aborting.");
+                return;
+            }
+
             List<Integer> dataList = Arrays
                     .stream(arr)
                     .boxed()
                     .collect(Collectors.toList());
             try {
-                PrintWriter pW = new PrintWriter(new FileWriter(filename,true));
+                PrintWriter pW = new PrintWriter(new FileWriter(fileName, true));
                 dataList.forEach(pW::println);
                 pW.println();
                 pW.close();
