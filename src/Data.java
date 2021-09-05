@@ -110,7 +110,6 @@ public class Data {
                         .toList();
         CSVUtils.generateCSV(dataList, fileName);
 
-
     }
 
     /**
