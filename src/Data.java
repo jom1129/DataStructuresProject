@@ -1,6 +1,8 @@
 import java.io.*;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.stream.IntStream;
 
 public class Data {
@@ -70,7 +72,7 @@ public class Data {
     }
     
     static void generateWorstCase(int n, String fileName) {
-        List<Integer> dataList = IntStream.iterate(0, i -> i - 1)
+        List<Integer> dataList = IntStream.iterate(n, i -> i - 1)
                 .limit(n)
                 .boxed()
                 .toList();
@@ -78,12 +80,14 @@ public class Data {
     }
     
     static void generateAverageCase(int n, String fileName) {
-        List<Integer> dataList = IntStream.iterate(0, i -> i +- 1)
-                .limit(n)
-                .boxed()
-                .toList();
+        List<Integer> dataList = new SecureRandom().ints(n)
+                        .boxed()
+                        .toList();
         CSVUtils.generateCSV(dataList, fileName);
+
+
     }
+
     
     static List<Integer> parse(String fileName) {
         return CSVUtils.parseCSV(fileName);
