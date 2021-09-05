@@ -77,14 +77,14 @@ public class Data {
         CSVUtils.generateCSV(dataList, fileName);
     }
     
-    /*static void generateAverageCase(int n, String fileName) {
-        List<Integer> dataList = IntStream.iterate(0, i -> i)
+    static void generateAverageCase(int n, String fileName) {
+        List<Integer> dataList = IntStream.iterate(0, i -> i +- 1)
                 .limit(n)
                 .boxed()
                 .toList();
         CSVUtils.generateCSV(dataList, fileName);
     }
-*/
+    
     static List<Integer> parse(String fileName) {
         return CSVUtils.parseCSV(fileName);
     }
