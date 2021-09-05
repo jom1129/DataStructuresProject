@@ -6,9 +6,17 @@ public class Tester {
 
     static void generateDataSet() {
         Data.generateBestCase(10000, "res/10KBestCase.csv");
-        // Data.generateWorstCase(10000, "res/10KWorstCase.csv");
-        // Data.generateAverageCase(10000, "res/10KAverageCase.csv");
-        // Do the same for the 200K, 500K and 1M datasets
+        Data.generateWorstCase(10000, "res/10KWorstCase.csv");
+        Data.generateAverageCase(10000, "res/10KAverageCase.csv");
+        Data.generateBestCase(200000, "res/200KBestCase.csv");
+        Data.generateWorstCase(200000, "res/200KWorstCase.csv");
+        Data.generateAverageCase(200000, "res/200KAverageCase.csv");
+        Data.generateBestCase(500000, "res/500KBestCase.csv");
+        Data.generateWorstCase(500000, "res/500KWorstCase.csv");
+        Data.generateAverageCase(500000, "res/500KAverageCase.csv");
+        Data.generateBestCase(1000000, "res/1MBestCase.csv");
+        Data.generateWorstCase(1000000, "res/1MWorstCase.csv");
+        Data.generateAverageCase(1000000, "res/1MAverageCase.csv");
     }
 
     public static void main(String[] args) {
@@ -57,14 +65,16 @@ public class Tester {
         System.out.print("Instructions: ");
         System.out.println(new BigDecimal(Sort.counter).toPlainString());
         System.out.println();
-
+        
+        timer = new Timer();   
         Sort.bubble(sortedWorstCase10k);
         System.out.println("Worst Case 10K");
         System.out.println("Time:" + timer.timeElapsed());
         System.out.print("Instructions: ");
         System.out.println(new BigDecimal(Sort.counter).toPlainString());
         System.out.println();
-
+        
+        timer = new Timer();
         Sort.bubble(sortedAverageCase10k);
         System.out.println("Average Case 10K");
         System.out.println("Time:" + timer.timeElapsed());
@@ -89,7 +99,8 @@ public class Tester {
         System.out.print("Instructions: ");
         System.out.println(new BigDecimal(Sort.counter).toPlainString());
         System.out.println();
-
+        
+        timer = new Timer();
         Sort.selection(sortedWorstCase10k);
         System.out.println("Worst Case 10K");
         System.out.println("Time:" + timer.timeElapsed());
@@ -97,6 +108,7 @@ public class Tester {
         System.out.println(new BigDecimal(Sort.counter).toPlainString());
         System.out.println();
 
+        timer = new Timer();
         Sort.selection(sortedAverageCase10k);
         System.out.println("Average Case 10K");
         System.out.println("Time:" + timer.timeElapsed());
@@ -121,6 +133,7 @@ public class Tester {
         System.out.println(new BigDecimal(Sort.counter).toPlainString());
         System.out.println();
 
+        timer = new Timer();
         Sort.insertion(sortedWorstCase10k);
         System.out.println("Worst Case 10K");
         System.out.println("Time:" + timer.timeElapsed());
@@ -128,6 +141,7 @@ public class Tester {
         System.out.println(new BigDecimal(Sort.counter).toPlainString());
         System.out.println();
 
+        timer = new Timer();
         Sort.insertion(sortedAverageCase10k);
         System.out.println("Average Case 10K");
         System.out.println("Time:" + timer.timeElapsed());
